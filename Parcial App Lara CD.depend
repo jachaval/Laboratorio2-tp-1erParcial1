@@ -1,0 +1,91 @@
+# depslib dependency file v1.0
+1600404242 source:c:\users\joa_a\documents\utn\2do cuatrimestre\laboratorio de computacion 2\parcial app lara cd\fecha.cpp
+	<iostream>
+	<cstdlib>
+	<cstdio>
+	<cstring>
+	<locale.h>
+	<ctime>
+	"fecha.h"
+
+1600404294 c:\users\joa_a\documents\utn\2do cuatrimestre\laboratorio de computacion 2\parcial app lara cd\fecha.h
+
+1600404242 source:c:\users\joa_a\documents\utn\2do cuatrimestre\laboratorio de computacion 2\parcial app lara cd\interfaz.cpp
+	<iostream>
+	<cstring>
+	"interfaz.h"
+	"rlutil.h"
+
+1600404242 c:\users\joa_a\documents\utn\2do cuatrimestre\laboratorio de computacion 2\parcial app lara cd\interfaz.h
+
+1571584339 c:\users\joa_a\documents\utn\2do cuatrimestre\laboratorio de computacion 2\parcial app lara cd\rlutil.h
+	<iostream>
+	<string>
+	<cstdio>
+	<stdio.h>
+	<string.h>
+	<windows.h>
+	<conio.h>
+	<termios.h>
+	<unistd.h>
+	<sys/ioctl.h>
+	<sys/types.h>
+	<sys/time.h>
+
+1600408320 source:c:\users\joa_a\documents\utn\2do cuatrimestre\laboratorio de computacion 2\parcial app lara cd\main.cpp
+	<iostream>
+	<cstdlib>
+	<cstdio>
+	<cstring>
+	<locale.h>
+	<ctime>
+	"rlutil.h"
+	"menu.h"
+	"usuario.h"
+	"fecha.h"
+
+1600408320 c:\users\joa_a\documents\utn\2do cuatrimestre\laboratorio de computacion 2\parcial app lara cd\menu.h
+
+1600405155 c:\users\joa_a\documents\utn\2do cuatrimestre\laboratorio de computacion 2\parcial app lara cd\usuario.h
+	"fecha.h"
+
+1600413942 source:c:\users\joa_a\documents\utn\2do cuatrimestre\laboratorio de computacion 2\parcial app lara cd\menu.cpp
+	<iostream>
+	<cstdlib>
+	<cstdio>
+	<cstring>
+	<locale.h>
+	<ctime>
+	"interfaz.h"
+	"rlutil.h"
+	"menu.h"
+	"usuario.h"
+	"entrenamiento.h"
+	"fecha.h"
+
+1600412647 source:c:\users\joa_a\documents\utn\2do cuatrimestre\laboratorio de computacion 2\parcial app lara cd\usuario.cpp
+	<iostream>
+	<cstdlib>
+	<cstdio>
+	<cstring>
+	<locale.h>
+	"rlutil.h"
+	"interfaz.h"
+	"usuario.h"
+	"fecha.h"
+
+1600413221 c:\users\joa_a\documents\utn\2do cuatrimestre\laboratorio de computacion 2\parcial app lara cd\entrenamiento.h
+	"fecha.h"
+
+1600413874 source:c:\users\joa_a\documents\utn\2do cuatrimestre\laboratorio de computacion 2\parcial app lara cd\entrenamiento.cpp
+	<iostream>
+	<cstdlib>
+	<cstdio>
+	<cstring>
+	<locale.h>
+	"rlutil.h"
+	"interfaz.h"
+	"usuario.h"
+	"fecha.h"
+	"entrenamiento.h"
+

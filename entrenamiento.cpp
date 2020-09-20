@@ -3,6 +3,7 @@
 #include <cstdio>
 #include <cstring>
 #include <locale.h>
+#include <iomanip>
 #include "rlutil.h"
 using namespace std;
 #include "interfaz.h"
@@ -10,11 +11,6 @@ using namespace rlutil;
 #include "usuario.h"
 #include "fecha.h"
 #include "entrenamiento.h"
-// ID SEA AUTONUMERICO... listo!!!!!!!
-// Y EL PUNTO 2... listo!!!!!
-// TAMBIEN ARREGLE LO DEL ID AUTONUMERICO!!!!!!!!1
-
-// FALTA EL PUNTO 4 QUE MUESTRE TODO
 
 const char* FILE_ENTRENAMIENTOS = "entrenamientos.dat";
 
@@ -56,7 +52,6 @@ void cargar_entrenamientos(){
 Entrenamiento cargar_entrenamiento(int codigo_buscado) {
 	Entrenamiento a, *aux;
 	aux = &a;
-	int idusuario;
     bool fechaverificada;
     bool aptomedico=verificar_apto(codigo_buscado);
 
@@ -70,7 +65,7 @@ Entrenamiento cargar_entrenamiento(int codigo_buscado) {
         cout << "    ID Usuario     : "<<codigo_buscado<<endl;
     }
 
-    aux->IDusuario=idusuario;
+    aux->IDusuario=codigo_buscado;
 
 	cout << "    Fecha de entrenamiento: (dd/mm/aaaa)";
 	a.entrena=cargar_fecha();
@@ -217,9 +212,11 @@ void listar_entrenamiento() {
 		cout << "No se puede leer el archivo."<<endl;
 		return;
 	}
+	cout << "    ID" << "   |IDUsuario" << " |Actividad" << " |Calorías" << " |Tiempo" << " |Fecha";
+    cout << endl <<"    -----------------------------------------------------------------";
+    cout<<endl;
 	while (fread(&reg, sizeof(Entrenamiento), 1, f)) {
-		mostrar_entrenamiento(reg);
-		cout << endl;
+		mostrar_entrenamiento_tabla(reg);
 	}
 	fclose(f);
 	anykey();
@@ -234,22 +231,6 @@ void mostrar_entrenamiento(Entrenamiento reg) {
     mostrar_actividad(reg);
 	cout << "    Calorías              : " << reg.calorias << endl;
     cout << "    Tiempo                : " << reg.tiempo << " minutos" <<endl;
-}
-
-void listar_entrenamiento_x_idusuario() {
-    cout << "    LISTA DE ENTRENAMIENTOS POR IDUSUARIO" << endl << endl;
-	int codigo, pos;
-	cout << "    Ingresar id a buscar: ";
-	cin >> codigo;
-	pos = buscar_entrenamiento(codigo);
-	if (pos >= 0) {
-        cout<<endl;
-        cout<<"    ---------------------------"<<endl;
-		mostrar_entrenamiento(leer_entrenamiento_x_idusuario(pos));
-	}
-	else {
-		msj("No existe el IDusuario ", 15, 3);
-	}
 }
 
 int buscar_entrenamiento(int codigo_entrenamiento) {
@@ -389,7 +370,7 @@ void mostrar_actividad(Entrenamiento reg){
 
 int cargar_ID(){
     int cantEntrenamientos;
-    cantEntrenamientos=cantidad_entrenamientos();
+    cantEntrenamientos=(cantidad_entrenamientos()+1);
     return cantEntrenamientos;
 }
 
@@ -403,7 +384,7 @@ int cantidad_entrenamientos(){
     bytes = ftell(p);
     fclose(p);
     cant = bytes / sizeof(Entrenamiento);
-    return cant+1;
+    return cant;
 }
 
 void modificar_entrenamiento(){
@@ -466,6 +447,139 @@ bool guardar_entrenamiento3(Entrenamiento reg, int pos){
     fclose(p);
     return grabo;
 }
+
+void ordenar_entrenamiento(Entrenamiento *vec, int tam){
+    int i, j, posmax;
+    Entrenamiento aux;
+    ///Selection sort
+    for(i=0; i<tam-1; i++){
+        posmax = i;
+        for(j=i+1; j<tam; j++){
+            if (vec[j].IDusuario > vec[posmax].IDusuario){
+                posmax = j;
+            }
+        }
+        aux = vec[i];
+        vec[i] = vec[posmax];
+        vec[posmax] = aux;
+    }
+}
+
+void listar_entrenamiento_x_idusuario(){
+    cout << "    LISTA DE ENTRENAMIENTOS POR IDUSUARIO" << endl << endl;
+	int codigo, pos;
+	cout << "    Ingresar id a buscar: ";
+	cin >> codigo;
+	pos = buscar_entrenamiento(codigo);
+	if (pos >= 0) {
+        cout<<endl;
+        cout<<"    ---------------------------"<<endl<<endl;
+        int cant = cantidad_entrenamientos();
+        if (cant == 0){
+            return;
+        }
+
+        Entrenamiento *vec;
+
+        vec = (Entrenamiento *) malloc(cant * sizeof(Entrenamiento));
+        if (vec == NULL){
+            return;
+        }
+        FILE *p;
+        p = fopen(FILE_ENTRENAMIENTOS, "rb");
+        if (p == NULL){
+            free(vec);
+            return;
+        }
+        fread(vec, sizeof(Entrenamiento), cant, p);
+        fclose(p);
+
+        //ordenar_entrenamiento(vec, cant);
+
+        cout << "    ID" << "   |IDUsuario" << " |Actividad" << " |Calorías" << " |Tiempo" << " |Fecha";
+        cout << endl <<"    -----------------------------------------------------------------";
+        cout<<endl;
+        int i;
+        for(i=0; i<cant; i++){
+            if(vec[i].IDusuario==codigo){
+                //mostrar_entrenamiento(vec[i]);
+                mostrar_entrenamiento_tabla(vec[i]);
+                /*cout<<endl;
+                Entrenamiento reg = leer_entrenamiento_x_idusuario(i);
+                cout << left;
+                cout << "    " <<setw(7)<< reg.ID;
+                cout << setw(12) << reg.IDusuario;
+                cout << setw(1) << reg.entrena.dia<<"/"<<reg.entrena.mes<<"/"<<setw(9)<<reg.entrena.anio;
+                cout << setw(13) << reg.actividad;
+                cout << setw(12) << reg.calorias;
+                cout << reg.tiempo;*/
+            }
+        }
+        cout<<endl;
+        free(vec);
+	}
+	else {
+		msj("No existe el IDusuario ", 15, 3);
+		return;
+	}
+
+
+}
+
+void mostrar_entrenamiento_tabla(Entrenamiento reg) {
+    cout << left;
+    cout << "    " <<setw(6)<< reg.ID;
+    cout << setw(11) << reg.IDusuario;
+    cout << setw(11);
+    switch (reg.actividad){
+        case 1:
+            cout<<"Caminata";
+        break;
+        case 2:
+            cout<<"Correr";
+        break;
+        case 3:
+            cout<<"Bicicleta";
+        break;
+        case 4:
+            cout<<"Natación";
+        break;
+        case 5:
+            cout<<"Pesas";
+        break;
+    }
+    cout << setw(10) << reg.calorias;
+    cout << setw(8) << reg.tiempo;
+    mostrar_fecha(reg.entrena);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

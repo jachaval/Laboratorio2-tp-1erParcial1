@@ -46,10 +46,10 @@
 
 1600408320 c:\users\joa_a\documents\utn\2do cuatrimestre\laboratorio de computacion 2\parcial app lara cd\menu.h
 
-1600405155 c:\users\joa_a\documents\utn\2do cuatrimestre\laboratorio de computacion 2\parcial app lara cd\usuario.h
+1600558481 c:\users\joa_a\documents\utn\2do cuatrimestre\laboratorio de computacion 2\parcial app lara cd\usuario.h
 	"fecha.h"
 
-1600413942 source:c:\users\joa_a\documents\utn\2do cuatrimestre\laboratorio de computacion 2\parcial app lara cd\menu.cpp
+1600556399 source:c:\users\joa_a\documents\utn\2do cuatrimestre\laboratorio de computacion 2\parcial app lara cd\menu.cpp
 	<iostream>
 	<cstdlib>
 	<cstdio>
@@ -63,26 +63,28 @@
 	"entrenamiento.h"
 	"fecha.h"
 
-1600412647 source:c:\users\joa_a\documents\utn\2do cuatrimestre\laboratorio de computacion 2\parcial app lara cd\usuario.cpp
+1600560893 source:c:\users\joa_a\documents\utn\2do cuatrimestre\laboratorio de computacion 2\parcial app lara cd\usuario.cpp
 	<iostream>
 	<cstdlib>
 	<cstdio>
 	<cstring>
 	<locale.h>
+	<iomanip>
 	"rlutil.h"
 	"interfaz.h"
 	"usuario.h"
 	"fecha.h"
 
-1600413221 c:\users\joa_a\documents\utn\2do cuatrimestre\laboratorio de computacion 2\parcial app lara cd\entrenamiento.h
+1600557882 c:\users\joa_a\documents\utn\2do cuatrimestre\laboratorio de computacion 2\parcial app lara cd\entrenamiento.h
 	"fecha.h"
 
-1600413874 source:c:\users\joa_a\documents\utn\2do cuatrimestre\laboratorio de computacion 2\parcial app lara cd\entrenamiento.cpp
+1600562095 source:c:\users\joa_a\documents\utn\2do cuatrimestre\laboratorio de computacion 2\parcial app lara cd\entrenamiento.cpp
 	<iostream>
 	<cstdlib>
 	<cstdio>
 	<cstring>
 	<locale.h>
+	<iomanip>
 	"rlutil.h"
 	"interfaz.h"
 	"usuario.h"

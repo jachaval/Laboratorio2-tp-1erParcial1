@@ -14,7 +14,7 @@ using namespace rlutil;
 #include "fecha.h"
 
 void menu_principal() {
-    initUI();
+    //initUI();
 
 	int opcion,i;
 	do{
@@ -204,7 +204,7 @@ void menu_entrenamientos(){
 			rlutil::cls();
 			title("LARA®", APP_TITLEFORECOLOR, APP_TITLEBACKCOLOR);
 			gotoxy(1, 3);
-            listar_entrenamiento_x_idusuario(); // FALTA HACER QUE LISTE TODOS LOS REGISTROS DE ESE IDUSUARIO
+            listar_entrenamiento_x_idusuario();
             system ("pause");
 			break;
 		case 5:

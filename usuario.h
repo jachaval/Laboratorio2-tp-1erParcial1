@@ -30,6 +30,7 @@ float cargar_altura();
 float cargar_peso();
 int cargar_apto();
 void mostrar_perfil_actividad(Usuario);
+void mostrar_usuario_tabla(Usuario reg);
 
 
 #endif // USUARIO_H_INCLUDED

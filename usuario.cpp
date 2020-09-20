@@ -3,6 +3,7 @@
 #include <cstdio>
 #include <cstring>
 #include <locale.h>
+#include <iomanip>
 #include "rlutil.h"
 using namespace std;
 #include "interfaz.h"
@@ -55,7 +56,7 @@ Usuario cargar_usuario() {
 
         aux->peso = cargar_peso();
 
-        cout << "    Perfil de actividad: ";
+        cout << "    Perfil de actividad (A/B/C):";
         cin >> aux->perfil;
         while (aux->perfil != 'A' && aux->perfil != 'a' && aux->perfil != 'B' && aux->perfil != 'b' && aux->perfil != 'C' && aux->perfil != 'c') {
             cout << "    >Perfil de actividad: ";
@@ -125,10 +126,15 @@ void listar_usuario() {
 		cout << "No se puede leer el archivo.";
 		return;
 	}
+	cout << "    ID" << "   |Apellidos" << "      |Nombres" << "        |Altura" << " |Peso" << " |Actividad" << " |Apto médico" << " |Fecha de nacimiento";
+    cout << endl <<"    ------------------------------------------------------------------------------------------------";
+    cout<<endl;
 	while (fread(&reg, sizeof(Usuario), 1, f)) {
-		mostrar_usuario(reg);
-		cout << endl;
+		//mostrar_usuario(reg);
+		mostrar_usuario_tabla(reg);
+
 	}
+    cout<<endl;
 	fclose(f);
 }
 
@@ -141,7 +147,12 @@ void mostrar_usuario(Usuario reg) {
 	cout << "    Altura             : " << reg.altura << " cm" << endl;
 	cout << "    Peso               : " << reg.peso << " kg" << endl;
 	mostrar_perfil_actividad(reg);
-	cout << "    Apto médico        : " << reg.apto << endl;
+	if(reg.apto==1){
+    cout << setw(13) << "Si";
+    }
+    else{
+        cout << setw(13) << "No";
+    }
 	cout << "    Estado             : " << reg.estado << endl;
 }
 
@@ -321,7 +332,90 @@ void eliminar_usuario(){
             }
         }while(opc!='s'||opc!='S'||opc=='n'||opc=='N');
     }
+    else{
+        msj("El usuario no existe", 15, 3);
+    }
 }
+
+void mostrar_usuario_tabla(Usuario reg){
+    cout << left;
+    cout << "    " <<setw(6)<< reg.ID;
+    cout << setw(16) << reg.apellidos;
+    cout << setw(16) << reg.nombres;
+    cout << setw(8) << reg.altura;
+    cout << setw(6) << reg.peso;
+    cout << setw(11);
+    switch (reg.perfil){
+	case 'a':
+	case 'A': cout << 'A';
+		break;
+	case 'b':
+	case 'B': cout << 'B';
+		break;
+	case 'c':
+	case 'C': cout << 'C';
+		break;
+	}
+    if(reg.apto==1){
+    cout << setw(13) << "Si";
+    }
+    else{
+        cout << setw(13) << "No";
+    }
+    mostrar_fecha(reg.nacimiento);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

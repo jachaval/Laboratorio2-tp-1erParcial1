@@ -36,5 +36,7 @@ int cargar_ID();
 void modificar_entrenamiento();
 Entrenamiento leer_entrenamiento_x_id(int pos);
 bool guardar_entrenamiento3(Entrenamiento reg, int pos);
+void ordenar_entrenamiento(Entrenamiento *vec, int tam);
+void mostrar_entrenamiento_tabla(Entrenamiento reg);
 
 #endif // ENTRENAMIENTO_H_INCLUDED
